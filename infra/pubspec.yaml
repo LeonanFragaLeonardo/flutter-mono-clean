@@ -16,3 +16,5 @@ dev_dependencies:
 dependencies: 
   dart_appwrite: ^4.0.1
   firebase_auth: ^3.3.8
+  domain:
+    path: ../domain
