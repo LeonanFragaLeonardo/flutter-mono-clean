@@ -15,3 +15,4 @@ dev_dependencies:
   test: ^1.16.0
 dependencies: 
   dart_appwrite: ^4.0.1
+  firebase_auth: ^3.3.8
