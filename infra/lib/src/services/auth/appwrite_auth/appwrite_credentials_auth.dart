@@ -1,6 +1,5 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:domain/domain.dart';
-import 'package:infra/src/services/auth/appwrite_auth/appwrite_config.dart';
 
 class AppWriteCredentialsAuth implements AuthenticateByPasswordService {
   final Client client;
@@ -14,13 +13,16 @@ class AppWriteCredentialsAuth implements AuthenticateByPasswordService {
     try {
       final result = await appWriteAccount.createSession(
           email: username, password: password);
+      final authToken = await appWriteAccount.createJWT();
+
       return AuthenticationOutput(
-          authToken: result.data.toString(), idToken: result.data.toString());
+          authToken: authToken.data.toString(),
+          idToken: result.data.toString());
     } on AppwriteException catch (ae) {
       print(ae.code);
       print(ae.message);
       print(ae.response);
-      throw new InvalidCredentialsException();
+      throw InvalidCredentialsException();
     }
   }
 }
