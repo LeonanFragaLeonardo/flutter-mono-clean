@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app"
+		},
+		{
+			"path": "business"
+		},
+		{
+			"path": "domain"
+		},
+		{
+			"path": "frameworks"
+		},
+		{
+			"path": "infra"
+		},
+		{
+			"path": "presentation"
+		}
+	],
+	"settings": {}
+}

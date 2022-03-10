@@ -1,7 +1,39 @@
+import 'package:app/authentication/ui/pages/auth_page.dart';
+import 'package:app/main/di/auth/appwrite_client_config.dart';
+import 'package:app/main/routes/routes_builder.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
+import 'package:infra/infra.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await MainApp.appWriteFeaturesService.initializeFeatureList();
+  runApp(MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  static var serviceToUse = AuthServiceEnum.firebase;
+  static var appWriteFeaturesService =
+      OnFeatureChangeAppWriteRepository(client: makeAppWriteClientConfig());
+  MainApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'RemoteCare',
+      debugShowCheckedModeBanner: false,
+      initialRoute: AuthPage.routeName,
+      getPages: makeRoutes(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

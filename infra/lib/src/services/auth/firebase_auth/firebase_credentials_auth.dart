@@ -7,7 +7,7 @@ class FirebaseCredentialsAuth implements AuthenticateByPasswordService {
       {required String username, required String password}) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: username, password: password);
+          .signInWithEmailAndPassword(email: username, password: password);
       if (userCredential.user == null) {
         throw InvalidCredentialsException();
       }
@@ -15,6 +15,7 @@ class FirebaseCredentialsAuth implements AuthenticateByPasswordService {
       return AuthenticationOutput(
           authToken: userCredential.user!.uid, idToken: idToken);
     } on FirebaseAuthException catch (e) {
+      print(e);
       throw InvalidCredentialsException();
     }
   }

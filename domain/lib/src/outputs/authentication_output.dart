@@ -40,16 +40,4 @@ class AuthenticationOutput {
   @override
   String toString() =>
       'AuthenticationOutput(authToken: $authToken, idToken: $idToken)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AuthenticationOutput &&
-        other.authToken == authToken &&
-        other.idToken == idToken;
-  }
-
-  @override
-  int get hashCode => authToken.hashCode ^ idToken.hashCode;
 }

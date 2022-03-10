@@ -1,0 +1,1 @@
+enum AuthServiceEnum { firebase, appwrite }

@@ -52,23 +52,4 @@ class User {
   String toString() {
     return 'User(username: $username, password: $password, email: $email, uid: $uid)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is User &&
-        other.username == username &&
-        other.password == password &&
-        other.email == email &&
-        other.uid == uid;
-  }
-
-  @override
-  int get hashCode {
-    return username.hashCode ^
-        password.hashCode ^
-        email.hashCode ^
-        uid.hashCode;
-  }
 }
